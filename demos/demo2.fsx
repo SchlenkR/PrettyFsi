@@ -1,5 +1,5 @@
 
-#r "./src/PrettyFsi/bin/Debug/netstandard2.0/PrettyFsi.dll"
+#r "../src/PrettyFsi/bin/Debug/netstandard2.0/PrettyFsi.dll"
 
 open System
 open PrettyFsi
@@ -43,12 +43,4 @@ let input =
     ]
 
 input
-
-//fsi.GetType().Assembly
-
-fsi.AddPrinter (fun (x: DateTime) -> x.ToShortTimeString())
-
-Nullable(DateTime.Now)
-
-Nullable<DateTime>()
 

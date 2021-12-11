@@ -18,7 +18,7 @@ See also: [demo.fsx](./demos/demo.fsx)
 **Bootstrap**
 
 ```fsharp
-#r "nuget: PrettyFsi-0.0.1"
+#r "nuget: PrettyFsi"
 
 open System
 open PrettyFsi

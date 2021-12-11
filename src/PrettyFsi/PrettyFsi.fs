@@ -118,11 +118,10 @@ module private Printing =
                 [ for cell in row do
                     match cell with
                     | null -> "", Left
+                    | :? string as s -> s, Right
+                    | :? DateTime as v -> tostring v, Right
+                    | :? TimeSpan as v -> tostring v, Right
                     | v when isNumeric (v.GetType()) -> tostring v, Right
-                    | :? DateTime as v -> tostring v, Right
-                    | :? TimeSpan as v -> tostring v, Right
-                    | :? DateTime as v -> tostring v, Right
-                    | :? TimeSpan as v -> tostring v, Right
                     // TODO: Special case formatting for sequences of prim. values
                     | v ->
                         // TODO: multi line cell values?

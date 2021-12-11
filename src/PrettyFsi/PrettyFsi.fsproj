@@ -5,7 +5,7 @@
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>PrettyFsi</PackageId>
-    <Version>0.0.1-prerelease1</Version>
+    <Version>0.0.1</Version>
     <Authors>Ronald Schlenker</Authors>
     <RepositoryUrl>https://github.com/ronaldschlenker/PrettyFsi</RepositoryUrl>
     <PackageTags>fsharp; fsi</PackageTags>

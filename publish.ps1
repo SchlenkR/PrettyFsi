@@ -19,8 +19,7 @@ $nugetKey = $Env:nuget_push
 write-host "Nuget server is: " $nugetServer
 write-host "Nuget key is: " $nugetKey
 
-#dotnet test ./src/PrettyFsi.sln 
-dotnet build ./src/PrettyFsi.sln -c Release
+dotnet test ./src/PrettyFsi.sln 
 success
 
 $packPath = "./.pack"
@@ -30,5 +29,5 @@ success
 
 $packageName = Get-ChildItem "$packPath/*.nupkg" | Sort-Object desc | select-object -first 1
 
-#dotnet nuget push "$packageName" -k $nugetKey -s $nugetServer
-#success
+dotnet nuget push "$packageName" -k $nugetKey -s $nugetServer
+success

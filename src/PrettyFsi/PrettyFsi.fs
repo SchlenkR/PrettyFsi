@@ -39,7 +39,7 @@ module Config =
     let mutable dateTimeFormat = "G"
     let mutable timeSpanFormat = "c"
 
-    let mutable rowCellSeparator = ":   "
+    let mutable rowIdSeparator = ":   "
     let mutable valueCellSeparator = " | "
 
 module private Printing =
@@ -149,22 +149,21 @@ module private Printing =
                     yield getColumnWidth (table.[0.., coli] |> Array.map fst)
             ]
 
-        let toCellValue (maxLength: int) (s: string) =
-            if s.Length < maxLength then s else s.Substring(0, maxLength)
-
         let renderedCells =
+            let toCellValue (maxLength: int) (s: string) =
+                if s.Length < maxLength then s else s.Substring(0, maxLength)
             table |> Array2D.mapi (fun rowi coli (cellValue, alignment) ->
                 // TODO: alignment
                 let colWidth = columnWidths.[coli]
                 let truncatedCellValue = toCellValue colWidth cellValue
                 let normedCellValue =
                     match alignment with
-                    | Left -> sprintf "%-*s " colWidth truncatedCellValue
-                    | Right -> sprintf "%*s " colWidth truncatedCellValue
+                    | Left -> sprintf "%-*s" colWidth truncatedCellValue
+                    | Right -> sprintf "%*s" colWidth truncatedCellValue
                 let ws = " "
                 match rowi,coli with
-                | 0,0 -> $"{normedCellValue}{String.replicate Config.rowCellSeparator.Length ws}"
-                | _,0 -> $"{normedCellValue}{Config.rowCellSeparator}"
+                | 0,0 -> $"{normedCellValue}{String.replicate Config.rowIdSeparator.Length ws}"
+                | _,0 -> $"{normedCellValue}{Config.rowIdSeparator}"
                 | _ -> $"{normedCellValue}{Config.valueCellSeparator}"
             )
 
@@ -172,9 +171,9 @@ module private Printing =
             [
                 for rowi in [0.. Array2D.length1 renderedCells - 1 ] do
                     let rowValue = renderedCells.[rowi, 0..] |> String.concat ""
-                    yield renderedCells.[rowi, 0..] |> String.concat ""
+                    yield renderedCells.[rowi, 0..] |> String.concat "" |> fun s -> s.TrimEnd()
                     if rowi = 0 then
-                        yield String.replicate rowValue.Length "-"
+                        yield String.replicate (rowValue.Length - 1) "-"
             ]
 
         rawRowStrings |> String.concat "\n" |> sprintf "\n%s\n"

@@ -1,13 +1,15 @@
+
 #if INTERACTIVE
 #r "../PrettyFsi/bin/Debug/netstandard2.0/PrettyFsi.dll"
-#endif
-
+#else
 module PrettyFsi.Tests.``ToTableString Tests``
+
+open FsUnit
+open NUnit.Framework
+#endif
 
 open System
 open System.Globalization
-open FsUnit
-open NUnit.Framework
 open PrettyFsi
 
 let normNewLine (s: string) = s.Replace("\r", "")
@@ -19,7 +21,7 @@ type Test1 =
       birthDate: DateTime
       ids: int list }
 
-let [<TestCase>] ``Simple property as subset``() =
+let [<TestCase>] ``Record with mixed types``() =
     
     let config =
         { FsiConfig.formatProvider = CultureInfo("de-DE")
@@ -45,10 +47,10 @@ let [<TestCase>] ``Simple property as subset``() =
         |> Table(config).toTableString
     
     let expected = normNewLine """
-      name              | degree  | weight  | birthDate            | ids                   | 
----------------------------------------------------------------------------------------------
-0 :   "Hans Günther"    |     23  |   56.3  | 15.12.2000 23:45:00  | [1; 23; 45; 23; 556]  | 
-1 :   "Jenny Lawrence"  |      2  |   56.3  | 15.12.2000 23:45:00  | [14; 63; 5; 8856]     | 
+     name           | degree | weight | birthDate           | ids                  |
+------------------------------------------------------------------------------------
+0:     Hans Günther |     23 |   56.3 | 15.12.2000 23:45:00 | [1; 23; 45; 23; 556] |
+1:   Jenny Lawrence |      2 |   56.3 | 15.12.2000 23:45:00 | [14; 63; 5; 8856]    |
 """
 
     res |> should equal expected

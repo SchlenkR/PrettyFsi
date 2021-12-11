@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "PrettyFsi", "PrettyFsi\PrettyFsi.fsproj", "{2268A413-AEF4-4DBC-8C3F-DE29516EDF14}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PrettyFsi.Tests", "PrettyFsi.Tests\PrettyFsi.Tests.fsproj", "{16337AB8-510F-49F5-8B0C-1D0A62C81626}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2268A413-AEF4-4DBC-8C3F-DE29516EDF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2268A413-AEF4-4DBC-8C3F-DE29516EDF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2268A413-AEF4-4DBC-8C3F-DE29516EDF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16337AB8-510F-49F5-8B0C-1D0A62C81626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16337AB8-510F-49F5-8B0C-1D0A62C81626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16337AB8-510F-49F5-8B0C-1D0A62C81626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16337AB8-510F-49F5-8B0C-1D0A62C81626}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

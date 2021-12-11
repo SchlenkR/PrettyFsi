@@ -13,6 +13,7 @@ open Microsoft.FSharp.Reflection
         
 type private Alignment = | Left | Right
 
+// TODO: Test all properties
 type FsiConfig =
     { formatProvider: IFormatProvider
       fsiPrintSize: int
@@ -182,8 +183,8 @@ module private Printing =
 open Printing
 
 // TODO: break table apart when width exceeds maxTableWidth / finalMaxTableWidth
-type Table =
-    static member toTable(fsiConfig: FsiConfig, input: IEnumerable<(string * obj) seq>) =
+type Table(fsiConfig) =
+    member this.toTableString(input: IEnumerable<(string * obj) seq>) : string =
         let input = input |> Seq.cache
         let properties =
             input 
@@ -193,7 +194,7 @@ type Table =
             |> Option.defaultValue []
         let rows = input |> Seq.map (Seq.map snd)
         toTableString fsiConfig properties rows
-    static member internal toTable(fsiConfig: FsiConfig, input: IEnumerable, seqType: Type) =
+    member internal this.toTableString(input: IEnumerable, seqType: Type) : string =
         let reflectionProps =
             seqType.GetProperties()
             |> Seq.filter (fun p -> p.CanRead)
@@ -210,10 +211,10 @@ type Table =
                     }
             }
         toTableString fsiConfig properties enumerable
-    static member toTable (fsiConfig: FsiConfig, input: IEnumerable<'a>) =
+    member this.toTableString(input: IEnumerable<'a>) : string =
         match input with
         | SupportedEnumerable (enumerable, elemType) ->
-            Table.toTable(fsiConfig, enumerable, elemType)
+            this.toTableString(enumerable, elemType)
 
 
 // TODO: Document
@@ -249,7 +250,6 @@ let addPrinters (fsi: InteractiveSession, mode: TableMode) =
               fsiPrintSize = fsi.PrintSize
               fsiPrintWidth = fsi.PrintWidth }
         match input with
-        | NamedSeq x -> Table.toTable(fsiConfig, x)
-        | TypedSeq (enumerable, elemType) -> Table.toTable(fsiConfig, enumerable, elemType)
+        | NamedSeq x -> Table(fsiConfig).toTableString(x)
+        | TypedSeq (enumerable, elemType) -> Table(fsiConfig).toTableString(enumerable, elemType)
     )
-

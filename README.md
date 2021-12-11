@@ -9,6 +9,8 @@ It's my contribution to the [F# Advent Calendar](https://sergeytihon.com/fsadven
     * It's born from my daily needs.
     * I'm interested in other requirements and needs that could help, and there are quite a few TODOs. So feel free to raise an issue in case something doesn't work for you!
 
+[![NuGet Badge](http://img.shields.io/nuget/v/PrettyFsi.svg?style=flat)](https://www.nuget.org/packages/PrettyFsi)
+
 ## Usage
 
 See also: [demo.fsx](./demos/demo.fsx)

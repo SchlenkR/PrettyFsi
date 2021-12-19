@@ -5,7 +5,7 @@
 It's my contribution to the [F# Advent Calendar](https://sergeytihon.com/fsadvent), 11th Door, organized by [Sergey Tihon](https://twitter.com/sergey_tihon) - thank you very much for organizing this event :)
 
 **Important**
-    * PrettyFsi isn't a full-blown electric toy christmas present. It's mor like a piece of chocolate in your advent calendar.
+    * PrettyFsi isn't a full-blown electric toy christmas present. It's more like a piece of chocolate in your advent calendar.
     * It's born from my daily needs.
     * I'm interested in other requirements and needs that could help, and there are quite a few TODOs. So feel free to raise an issue in case something doesn't work for you!
 

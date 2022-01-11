@@ -60,6 +60,6 @@ type Test1 =
 
 ```
 
-## Build
+## Build / FSharp.Compiler.Interactive.Settings.dll reference
 
-See ./devDependeicies/README.md for instructions.
+See [these instructions](./devDependeicies/README.md) for building the solution and resolving the `FSharp.Compiler.Interactive.Settings.dll` reference.
